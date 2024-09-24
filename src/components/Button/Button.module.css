@@ -4,6 +4,7 @@
 
 	color: var(--white-color);
    font-family: var(--font);
+	line-height: 1;
 
    cursor: pointer;
    transition: background 0.25s;
@@ -22,6 +23,15 @@
 
 	font-size: 15px;
 	text-transform: uppercase;
+}
+
+.padding-small {
+	display: flex;
+	gap: 7px;
+	justify-content: center;
+	align-items: center;
+
+	padding: 10px 20px 10px 10px;
 }
 
 .accent:hover {

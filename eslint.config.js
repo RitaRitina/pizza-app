@@ -24,7 +24,7 @@ export default tseslint.config(
             { allowConstantExport: true },
          ],
          semi: ['error', 'always', { omitLastInOneLineBlock: false }],
-         "comma-dangle": [2, "always-multiline"],   
+         'comma-dangle': ['error', 'always-multiline'],
          quotes: ['error', 'single'],
          'react/prop-types': [0],
          indent: ['off'],

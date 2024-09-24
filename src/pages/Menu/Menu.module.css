@@ -1,0 +1,28 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.search {
+	min-width: 256px;
+
+	padding-left: 16px;
+	margin-bottom: 50px;
+
+	display: flex;
+
+	border: 1px solid #eee;
+	border-radius: 10px;
+	box-shadow: 15px 20px 45px 0px rgba(233, 233, 233, 0.25);
+}
+
+.input-search {
+	padding: 16px 30px 16px 10px;
+	border: none;
+	box-shadow: none;
+}
+
+.input-search:focus {
+	outline: none;
+}
+
