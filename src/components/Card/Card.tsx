@@ -29,7 +29,7 @@ const Card = (props: CardProps) => {
 					</div>
 				</div>
 				<div className={styles.footer}>
-					<h3 className={styles.productName}>{props.title}</h3>
+					<h3 className={styles.productName}>{props.name}</h3>
 					<p className={styles.productDescription}>{props.description}</p>
 				</div>
 			</div>

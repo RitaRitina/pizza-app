@@ -3,7 +3,7 @@ import styles from './Product.module.css';
 
 const Product = () => {
    const { id } = useParams();
-   return <div>Product - {id}</div>;
+   return <div className={styles.product}>Product - {id}</div>;
 };
 
 export default Product;
