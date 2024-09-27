@@ -1,9 +1,23 @@
-import { useParams } from 'react-router-dom';
+import { Await, useLoaderData } from 'react-router-dom';
+import { Product } from '../../interfaces/product.interface';
 import styles from './Product.module.css';
+import { Suspense } from 'react';
 
-const Product = () => {
-   const { id } = useParams();
-   return <div className={styles.product}>Product - {id}</div>;
+const ProductBody = () => {
+   const data = useLoaderData() as { data: Product };
+   return (
+      <>
+         <Suspense fallback={<>Загружаем...</>}>
+            <Await resolve={data.data}>
+               {({ data }: { data: Product }) => (
+                  <>
+                     <div className={styles.product}>Product - {data.name}</div>
+                  </>
+               )}
+            </Await>
+         </Suspense>
+      </>
+   );
 };
 
-export default Product;
+export default ProductBody;
