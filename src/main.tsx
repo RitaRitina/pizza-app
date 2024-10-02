@@ -4,17 +4,25 @@ import './index.css';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 import Cart from './pages/Cart/Cart.tsx';
 import Error from './pages/Error/Error.tsx';
-import Layout from './layout/Layout/Layout.tsx';
+import Layout from './layout/Menu/Layout.tsx';
 import ProductBody from './pages/Product/Product.tsx';
 import axios from 'axios';
 import { PREFIX } from './helpers/API.ts';
+import AuthLayouth from './layout/Auth/AuthLayout.tsx';
+import Login from './pages/Login/Login.tsx';
+import Register from './pages/Register/Register.tsx';
+import RequireAuth from './helpers/RequireAuth.tsx';
 
 const Menu = lazy(() => import('./pages/Menu/Menu'));
 
 const router = createBrowserRouter([
    {
       path: '/',
-      element: <Layout />,
+      element: (
+         <RequireAuth>
+            <Layout />
+         </RequireAuth>
+      ),
       children: [
          {
             path: '/',
@@ -39,7 +47,7 @@ const router = createBrowserRouter([
                         axios
                            .get(`${PREFIX}/products/${params.id}`)
                            .then((data) => resolve(data))
-									.catch(reject);
+                           .catch(reject);
                      }, 2000);
                   }),
                });
@@ -64,6 +72,20 @@ const router = createBrowserRouter([
       ],
    },
    {
+      path: '/auth',
+      element: <AuthLayouth />,
+      children: [
+         {
+            path: 'login',
+            element: <Login />,
+         },
+         {
+            path: 'register',
+            element: <Register />,
+         },
+      ],
+   },
+   {
       path: '*',
       element: <Error />,
    },
@@ -72,5 +94,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
    <StrictMode>
       <RouterProvider router={router} />
-   </StrictMode>
+   </StrictMode>,
 );
