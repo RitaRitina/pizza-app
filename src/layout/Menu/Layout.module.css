@@ -63,6 +63,30 @@
 	color: var(--primary-color);
 }
 
+.image {
+	position: relative;
+}
+
+.cartCount {
+	position: absolute;
+	top: -6px;
+	right: -12px;
+
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 10px;
+	color: var(--white-color);
+
+	background-color: var(--primary-color);
+	border-radius: 50%;
+}
+
 .content {
 	width: 100%;
 	padding: 40px 60px;

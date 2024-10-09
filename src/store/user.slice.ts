@@ -43,27 +43,6 @@ export const login = createAsyncThunk(
    },
 );
 
-// export const register = createAsyncThunk(
-// 	'auth/register',
-// 	async (params: {email: string; password: string, name: string}) => {
-// 		try {
-// 			const { data } = await axios.post<LoginResponce>(
-// 				`${PREFIX}/auth/register`,
-// 				{
-// 					email: params.email,
-// 					password: params.password,
-// 					name: params.name,
-// 				},
-// 			);
-// 			console.log(data)
-// 			return data;			
-// 		} catch (error) {
-// 			if (error instanceof AxiosError) {
-//             throw new Error(error.response?.data.message);
-//          }
-// 		}
-// 	});
-
 export const register = createAsyncThunk(
    'user/register',
    async (params: { email: string; password: string; name: string }) => {
@@ -137,17 +116,6 @@ export const userSlice = createSlice({
 			builder.addCase(register.rejected, (state, action) => {
 				state.registerErrorMessage = action.error.message;
 			});
-
-		// builder.addCase(register.fulfilled, (state, action) => {
-		// 	if (!action.payload) {
-		// 		return;
-		// 	}
-		// 	state.jwt = action.payload.access_token;
-		// });
-
-		// builder.addCase(register.rejected, (state, action) => {
-		// 	state.registerErrorMessage = action.error.message;
-		// });
    },
 });
 

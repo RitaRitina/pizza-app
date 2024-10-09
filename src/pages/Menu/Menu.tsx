@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import Heading from '../../components/Heading/Heading';
 import Input from '../../components/Input/Input';
@@ -7,20 +7,30 @@ import { Product } from '../../interfaces/product.interface';
 import { MenuList } from './MenuList/MenuList';
 import styles from './Menu.module.css';
 
+export interface Search {
+   text: {
+      value: string;
+   };
+}
+
 const Menu = () => {
    const [products, setProducts] = useState<Product[]>([]);
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [error, setError] = useState<string | undefined>();
+   const [filter, setFilter] = useState<string>();
 
-   const getMenu = async () => {
+   useEffect(() => {
+      getMenu(filter);
+   }, [filter]);
+
+   const getMenu = async (name?: string) => {
       try {
          setIsLoading(true);
-         // await new Promise<void>((resolve) => {
-         //    setTimeout(() => {
-         //       resolve();
-         //    }, 2000);
-         // });
-         const { data } = await axios.get<Product[]>(`${PREFIX}/products`);
+         const { data } = await axios.get<Product[]>(`${PREFIX}/products`, {
+            params: {
+               name,
+            },
+         });
          setProducts(data);
          setIsLoading(false);
       } catch (error) {
@@ -30,31 +40,22 @@ const Menu = () => {
          setIsLoading(false);
          return;
       }
-
-      // try {
-      //    const res = await fetch(`${PREFIX}/products`);
-      //    if (!res.ok) {
-      //       return;
-      //    }
-      //    const data = (await res.json()) as Product[];
-      //    setProducts(data);
-      // } catch (error) {
-      //    console.error(error);
-      //    return;
-      // }
    };
 
-   useEffect(() => {
-      getMenu();
-   }, []);
+   const changeValues = (e: ChangeEvent<HTMLInputElement>) => {
+      setFilter(e.target.value);
+   };
 
    return (
       <>
          <div className={styles.header}>
             <Heading>Меню</Heading>
             <div className={styles.search}>
-               <img src="/search-icon.svg" />
+               <button className={styles.button}>
+                  <img src="/search-icon.svg" />
+               </button>
                <Input
+                  onChange={changeValues}
                   className={styles['input-search']}
                   type="text"
                   id="input"
@@ -62,8 +63,8 @@ const Menu = () => {
                />
             </div>
          </div>
-			{error && <div>{error}</div>}
-         {!isLoading && <MenuList products={products}/>}
+         {error && <div>{error}</div>}
+         {!isLoading && <MenuList products={products} />}
          {isLoading && <p>Загружаем продукты...</p>}
       </>
    );

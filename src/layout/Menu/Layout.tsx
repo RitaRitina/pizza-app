@@ -11,6 +11,7 @@ const Layout = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispath>();
 	const profile = useSelector((s: RootState) => s.user.profile);
+	const items = useSelector((s: RootState) => s.cart.items);
 
 	const logout = () => {
 		dispatch(userActions.logout());
@@ -36,20 +37,29 @@ const Layout = () => {
             <div className={styles.menu}>
                <NavLink
                   to="/"
-                  className={({ isActive }) => cn(styles.link, {
-                     [styles.active]: isActive,
-                  })}
+                  className={({ isActive }) =>
+                     cn(styles.link, {
+                        [styles.active]: isActive,
+                     })
+                  }
                >
                   <img src="/menu-icon.svg" alt="Меню" />
                   Меню
                </NavLink>
                <NavLink
                   to="/cart"
-                  className={({ isActive }) => cn(styles.link, {
-                     [styles.active]: isActive,
-                  })}
+                  className={({ isActive }) =>
+                     cn(styles.link, {
+                        [styles.active]: isActive,
+                     })
+                  }
                >
-                  <img src="/cart-icon.svg" alt="Корзина" />
+                  <div className={styles.image}>
+                     <img src="/cart-icon.svg" alt="Корзина" />
+							{items.length !== 0 && <span className={styles.cartCount}>
+                        {items.reduce((acc, i) => acc + i.count, 0)}
+                     </span>}
+                  </div>
                   Корзина
                </NavLink>
             </div>
