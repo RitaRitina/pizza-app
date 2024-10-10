@@ -13,14 +13,14 @@ const Layout = () => {
 	const profile = useSelector((s: RootState) => s.user.profile);
 	const items = useSelector((s: RootState) => s.cart.items);
 
+	useEffect(() => {
+		dispatch(getProfile());
+	}, [dispatch]);
+
 	const logout = () => {
 		dispatch(userActions.logout());
 		navigate('/auth/login');
 	};
-
-	useEffect(() => {
-		dispatch(getProfile());
-	}, [dispatch]);
 
    return (
       <div className={styles.layout}>
@@ -56,9 +56,11 @@ const Layout = () => {
                >
                   <div className={styles.image}>
                      <img src="/cart-icon.svg" alt="Корзина" />
-							{items.length !== 0 && <span className={styles.cartCount}>
-                        {items.reduce((acc, i) => acc + i.count, 0)}
-                     </span>}
+							{items.length !== 0 && 
+							<span className={styles.cartCount}>
+                        {items.reduce((acc, i) => acc += i.count, 0)}
+                     </span>
+							}
                   </div>
                   Корзина
                </NavLink>

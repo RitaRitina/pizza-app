@@ -43,6 +43,8 @@
 
 .price span {
 	color: var(--primary-color);
+
+	padding: 0px;
 }
 
 .addToCart {

@@ -1,21 +1,26 @@
 import { Link } from 'react-router-dom';
 import styles from './CartItem.module.css';
 import { CartItemProps } from './CartItem.props';
+import { useDispatch } from 'react-redux';
+import { AppDispath } from '../../store/store';
+import { cartActions } from '../../store/cart.slice';
 
 const getExtendedCount = (count: number): string =>
    count < 9 ? `0${count}` : String(count);
 
 const CartItem = (props: CartItemProps) => {
+	const dispatch = useDispatch<AppDispath>();
+
    const decreaseQuantity = () => {
-      console.log(props.count);
+      dispatch(cartActions.remove(props.id));
    };
 
    const increaseQuantity = () => {
-      console.log(props.count);
+      dispatch(cartActions.add(props.id));
    };
 
    const deleteProduct = () => {
-      console.log(props.count);
+      dispatch(cartActions.delete(props.id));
    };
 
    return (
@@ -38,17 +43,17 @@ const CartItem = (props: CartItemProps) => {
                   className={styles.buttonMinus}
                   onClick={decreaseQuantity}
                >
-                  <img src="/minus-icon.svg" />
+                  <img src="/minus-icon.svg" alt='Удалить из корзины'/>
                </button>
                <span>{getExtendedCount(props.count)}</span>
                <button className={styles.buttonPlus} onClick={increaseQuantity}>
-                  <img src="/plus-icon.svg" />
+                  <img src="/plus-icon.svg" alt='Добавить в корзину'/>
                </button>
                <button
                   className={styles.buttonDelete}
                   onClick={deleteProduct}
                >
-                  <img src="/delete-icon.svg" />
+                  <img src="/delete-icon.svg" alt='Удалить все'/>
                </button>
             </div>
          </div>
