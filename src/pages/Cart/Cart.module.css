@@ -1,6 +1,93 @@
 .container {
-	width: 600px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
+}
+
+.promoCode {
+	position: relative;
+
+	width: 100%;
+}
+
+.container .input{
+	width: 100%;
+
+	box-sizing: border-box;
+
+	padding: 20px 15px;
+	border-radius: 29px;
+}
+
+.button {
+	position: absolute;
+	right: 15px;
+	top: 7.9px;
+}
+
+.info {
+	margin-bottom: 35px;
+
+	display: flex;
+
+	flex-direction: column;
+	gap: 20px;
+}
+
+.info span{
+	padding: 0px;
+}
+
+.meaning {
+	display: flex;
+	gap: 50px;
+	justify-content: space-between;
+
+	padding-bottom: 15px;
+}
+
+.meaning:not(:last-child) {
+	border-bottom: 1px solid #eee;;
+}
+
+.text {
+	color: var(--text-color);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.text span {
+	color: var(--text-secondary-color);
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+
+	padding-left: 2px;
+}
+
+.price {
+	color: var(--text-color);
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.price span {
+	color: var(--text-secondary-color);
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+
+	padding-left: 2px;
+}
+
+.orderButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
