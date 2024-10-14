@@ -1,22 +1,25 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../../components/CartItem/CartItem';
 import Title from '../../components/Heading/Heading';
 import styles from './Cart.module.css';
-import { RootState } from '../../store/store';
+import { AppDispath, RootState } from '../../store/store';
 import axios from 'axios';
 import { PREFIX } from '../../helpers/API';
 import { Product } from '../../interfaces/product.interface';
 import { useEffect, useState } from 'react';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import { cartActions } from '../../store/cart.slice';
 
-const  DELIVERY_PRICE = 169;
+const DELIVERY_PRICE = 169;
 
 const Cart = () => {
    const [cartPproducts, setCartProducts] = useState<Product[]>();
    const items = useSelector((s: RootState) => s.cart.items);
-
-   console.log(cartPproducts);
+   const jwt = useSelector((s: RootState) => s.user.jwt);
+	const navigate = useNavigate();
+	const dispatch = useDispatch<AppDispath>();
 
    useEffect(() => {
       loadALLItems();
@@ -30,6 +33,22 @@ const Cart = () => {
    const loadALLItems = async () => {
       const res = await Promise.all(items.map((i) => getItem(i.id)));
       setCartProducts(res);
+   };
+
+   const checkout = async () => {
+      await axios.post(
+         `${PREFIX}/order`,
+         {
+            products: items,
+         },
+         {
+            headers: {
+               Authorization: `Bearer ${jwt}`,
+            },
+         },
+      );
+		dispatch(cartActions.clean());
+		navigate('/success');
    };
 
    const getPrice = () => {
@@ -100,7 +119,9 @@ const Cart = () => {
             </div>
          </div>
          <div className={styles.orderButton}>
-            <Button onClick={} appearence="big">Оформить</Button>
+            <Button onClick={checkout} appearence="big">
+               Оформить
+            </Button>
          </div>
       </div>
    );

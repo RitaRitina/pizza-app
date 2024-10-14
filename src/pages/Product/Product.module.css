@@ -1,0 +1,148 @@
+.productBody {
+
+}
+
+.header {
+	display: flex;
+	gap: 30px;
+	align-items: center;
+
+	margin-bottom: 30px;
+}
+
+.image {
+
+}
+
+.title {
+	flex: 1;
+}
+
+.image img {
+	width: 10px;
+	height: 10px;
+}
+
+.button {
+	padding: 13px 15px 13px 42px;
+
+	position: relative;
+}
+
+.button img {
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
+}
+
+.content {
+	width: 600px;
+	height: 210px;
+
+	display: flex;
+	gap: 30px;
+}
+
+.productImage {
+	flex: 0 0 50%;
+	border-radius: 20px;
+
+	background-size: cover;
+}
+
+.info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+
+	color: var(--text-color);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.price {
+	color: #111719;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.price span {
+	padding-left: 3px;
+
+	color: var(--text-secondary-color);
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.rating {
+	display: flex;
+	gap: 3px;
+
+	padding: 3px 8px;
+
+	background: var(--white-color);
+	border-radius: 20px;
+	box-shadow: 0px 6.0714287757873535px 24.285715103149414px 0px rgba(254, 114, 76, 0.20);
+
+	color: #111719;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.compound {
+	color: var(--text-color);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.compound p {
+	margin-bottom: 10px;
+}
+
+.compound ul {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding-left: 10px;
+}
+
+.compound li {
+	list-style-type: none;
+	display: flex;
+	gap: 5px;
+	align-items: center;
+
+	color: var(--text-secondary-color);
+	text-transform: capitalize;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.compound li::before {
+	content: '';
+	min-width: 4px;
+	min-height: 4px;
+
+	border-radius: 50%;
+
+	background-color: var(--text-secondary-color);
+}
+
